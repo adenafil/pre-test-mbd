@@ -147,7 +147,23 @@ lalu sedangkan ERD pada dbeaver dapat dilihat pada lampiran berikut.
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
 
+Mengenai penjelasan, kami akan menaruhya pada section jawaban no 3.
+
 # Jawaban Soal No 2
 Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka user harus membuat akun terlebih dahulu yang mana user direpresantikan pada table user, singkatnya ketika user sudah membuat akun maka dia harus login, setelah login dia mendapatkan pangkat user pada website toko online tersebut. pangkat user mendaptakan hak akses membeli barang yang mana barang terepresentasikan pada table barang kemudian user bisa melakukan check out yang direpresantasikan oleh table transaksi.
 
 # Jawaban Soal No 3
+Pada jawaban no 3 kami akan memulai menjawab atau menjelaskan mengenai table-table yang sudah kami buat, kemudian field mana yang termasuk primary key kemudian yang mana jugakah field yang merupakan foreign key. 
+
+## table user
+
+| User |
+|------|
+|id_user|
+|no_telp|
+|password|
+|nama|
+|alamat|
+|id_kota|
+|id_refferal|
+|pangkatU|
