@@ -2,13 +2,9 @@
 1. Dalam kelompok beranggotakan 2 orang, buatlah sebuah desain database
 sederhana (bebas) berupa Relational Data Model (Entity Relationship
 Diagram) dengan jumlah tabel minimal 7! Pilih salah satu topik berikut:
-</br>
-a. Toko Online perangkat IT dan aksesoris
-</br>
-b. Toko Laundry baju dengan sistem antar jemput pesanan
-</br>
-c. Toko roti butik (Bakery)
-</br>
+- a. Toko Online perangkat IT dan aksesoris
+- b. Toko Laundry baju dengan sistem antar jemput pesanan
+- c. Toko roti butik (Bakery)
 2. Berikan narasi singkat mengenai sistem yang dimodelkan dalam database
 tersebut!
 3. Berikan atribut pada masing-masing tabel dan keterangan primary key dan
