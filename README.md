@@ -232,34 +232,51 @@ CREATE TABLE `user` (
 ### Constraints
 | Name | Column | Owner | Type | Check Expression |
 |------|--------|-------|------|------------------|
-|PRIMARY| - |user|PRIMARY KEY| |
+|PRIMARY| - |transaksi|PRIMARY KEY| |
 
-### References
+### Foreign Keys
 | Name | Column | Owner | Ref Table | Type | Ref Object |
-|------|--------|-------|-----------|------|-------|
-|Komentar_ibfk_2|-|komentar|user|FOREIGN KEY|PRIMARY|
-|refferal_ibfk_1|-|refferal|user|FOREIGN KEY|PRIMARY|
+|------|--------|-------|-----------|------|--------|
+|transaksi_ibfk_2|-|transaksi|barang|FOREIGN KEY|PRIMARY|
+|transaksi_ibfk_1|-|transaksi|packing|FOREIGN KEY|PRIMARY|
 |transaksi_ibfk_3|-|transaksi|user|FOREIGN KEY|PRIMARY|
 
 ### Indexes
 | Index Name | Column | Table | Index Type | Ascending | Nullable |
 |------------|--------|-------|------------|---------|---------|
-|PRIMARY KEY|id_user|user|BTree|-|-|
+|PRIMARY KEY|id_transaksi|transaksi|BTree|-|-|
+|id_barang|id_barang|transaksi|BTree|-|-|
+|id_packing|id_packing|transaksi|BTree|-|-|
+|id_user|id_user|transaksi|BTree|-|-|
+
 
 ### DDL
 ```
--- predblagi.`user` definition
+-- predblagi.transaksi definition
 
-CREATE TABLE `user` (
-  `id_user` int(7) NOT NULL AUTO_INCREMENT,
-  `no_telp` varchar(12) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `nama` varchar(40) DEFAULT NULL,
-  `alamat` varchar(500) DEFAULT NULL,
-  `id_kota` char(8) DEFAULT NULL,
-  `id_refferal` int(8) DEFAULT NULL,
-  `pangkatU` enum('user','affiliasi','non_aktif') DEFAULT NULL,
-  PRIMARY KEY (`id_user`)
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(10) NOT NULL AUTO_INCREMENT,
+  `tanggal` datetime DEFAULT NULL,
+  `id_user` int(7) DEFAULT NULL,
+  `id_barang` int(7) DEFAULT NULL,
+  `harga` int(10) DEFAULT NULL,
+  `jumlah` int(5) DEFAULT NULL,
+  `asuransi` int(7) DEFAULT NULL,
+  `total_harga` int(10) DEFAULT NULL,
+  `tanggal_bayar` date DEFAULT NULL,
+  `bank_transaksi` enum('bni','bca') DEFAULT NULL,
+  `lama_pengiriman` char(6) DEFAULT NULL,
+  `status_transaksi` enum('pesan','konfirmasi','lunas','terkirim') DEFAULT NULL,
+  `tanggal_kirim` date DEFAULT NULL,
+  `packing` int(7) DEFAULT NULL,
+  `id_packing` int(7) DEFAULT NULL,
+  PRIMARY KEY (`id_transaksi`),
+  KEY `id_packing` (`id_packing`),
+  KEY `id_barang` (`id_barang`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_packing`) REFERENCES `packing` (`id_packing`),
+  CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
+  CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
