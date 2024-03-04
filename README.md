@@ -156,6 +156,7 @@ Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka
 Pada jawaban no 3 kami akan memulai menjawab atau menjelaskan mengenai table-table yang sudah kami buat, kemudian field mana yang termasuk primary key kemudian yang mana jugakah field yang merupakan foreign key. 
 
 ## Table user
+Table user merupakan represantasi dari seorang user. Berikut ini merupakan propery-properynya.
 
 ### Column
 
@@ -203,3 +204,62 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
+
+-
+
+## Table Transaksi
+
+
+### Column
+
+| Column Name | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
+|------|------------|---------|----------|----------|-----|----------|--------|
+|id_transaksi|1|int(10)|[v]|[v]|PRI|
+|tanggal|2|datetime|[]|[]|-|
+|id_user|3|int|[]|[]|MUL|
+|id_barang|4|int|[]|[]|MUL|
+|harga|5|int|[]|[]|-|
+|jumlah|6|int|[]|[]|-|
+|asuransi|7|int|[]|[]|-|
+|total_harga|8|int|[]|[]|-|
+|tanggal_bayar|9|date|[]|[]|-|
+|bank_transaksi|10|enum('bni','bca')|[]|[]|-|
+|lama_pengiriman|11|char(6)|[]|[]|-|
+|status_transaksi|12|enum('pesan','konfirmasi','lunas','terkirim')|[]|[]|-|
+|tanggal_pengiriman|13|date|[]|[]|-|
+|id_packing|14|int|[]|[]|MUL|
+
+### Constraints
+| Name | Column | Owner | Type | Check Expression |
+|------|--------|-------|------|------------------|
+|PRIMARY| - |user|PRIMARY KEY| |
+
+### References
+| Name | Column | Owner | Ref Table | Type | Ref Object |
+|------|--------|-------|-----------|------|-------|
+|Komentar_ibfk_2|-|komentar|user|FOREIGN KEY|PRIMARY|
+|refferal_ibfk_1|-|refferal|user|FOREIGN KEY|PRIMARY|
+|transaksi_ibfk_3|-|transaksi|user|FOREIGN KEY|PRIMARY|
+
+### Indexes
+| Index Name | Column | Table | Index Type | Ascending | Nullable |
+|------------|--------|-------|------------|---------|---------|
+|PRIMARY KEY|id_user|user|BTree|-|-|
+
+### DDL
+```
+-- predblagi.`user` definition
+
+CREATE TABLE `user` (
+  `id_user` int(7) NOT NULL AUTO_INCREMENT,
+  `no_telp` varchar(12) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `nama` varchar(40) DEFAULT NULL,
+  `alamat` varchar(500) DEFAULT NULL,
+  `id_kota` char(8) DEFAULT NULL,
+  `id_refferal` int(8) DEFAULT NULL,
+  `pangkatU` enum('user','affiliasi','non_aktif') DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
