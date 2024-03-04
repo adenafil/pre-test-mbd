@@ -2,9 +2,13 @@
 1. Dalam kelompok beranggotakan 2 orang, buatlah sebuah desain database
 sederhana (bebas) berupa Relational Data Model (Entity Relationship
 Diagram) dengan jumlah tabel minimal 7! Pilih salah satu topik berikut:
+</br>
 a. Toko Online perangkat IT dan aksesoris
+</br>
 b. Toko Laundry baju dengan sistem antar jemput pesanan
+</br>
 c. Toko roti butik (Bakery)
+</br>
 2. Berikan narasi singkat mengenai sistem yang dimodelkan dalam database
 tersebut!
 3. Berikan atribut pada masing-masing tabel dan keterangan primary key dan
@@ -23,3 +27,5 @@ kelompok kami mendapatkan studi kasus dengan judul <i><b>"Toko Online perangkat 
 
 # Jawaban Soal No 2
 Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka user harus membuat akun terlebih dahulu yang mana user direpresantikan pada table user, singkatnya ketika user sudah membuat akun maka dia harus login, setelah login dia mendapatkan pangkat user pada website toko online tersebut. pangkat user mendaptakan hak akses membeli barang yang mana barang terepresentasikan pada table barang kemudian user bisa melakukan check out yang direpresantasikan oleh table transaksi.
+
+# Jawaban Soal No 3
