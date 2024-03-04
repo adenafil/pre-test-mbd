@@ -155,15 +155,17 @@ Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka
 # Jawaban Soal No 3
 Pada jawaban no 3 kami akan memulai menjawab atau menjelaskan mengenai table-table yang sudah kami buat, kemudian field mana yang termasuk primary key kemudian yang mana jugakah field yang merupakan foreign key. 
 
-## table user
+## Table user
 
-| User |
-|------|
-|id_user|
-|no_telp|
-|password|
-|nama|
-|alamat|
-|id_kota|
-|id_refferal|
-|pangkatU|
+### column
+
+| User | Keterangan |
+|------|------------|
+|id_user|primary key|
+|no_telp|-|
+|password|-|
+|nama|-|
+|alamat|-|
+|id_kota|foreign key dari primary key di table kota|
+|id_refferal|-|
+|pangkatU|-|
