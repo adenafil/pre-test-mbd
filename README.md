@@ -20,7 +20,7 @@ Berikut ini adalah anggota kelompok kami :
 
 # Jawaban Soal NO 1
 kelompok kami mendapatkan studi kasus dengan judul <i><b>"Toko Online perangkat IT dan aksesoris"</b></i>.
-Mengenai file sql yang sudah kami buat bisa di klik [di sini](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/sql/db.sql) , atau sebagai berikut :
+Mengenai file sql yang sudah kami buat bisa diklik [di sini](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/sql/db.sql) , atau sebagai berikut :
 ```
 use predblagi;
 
@@ -138,6 +138,14 @@ ALTER TABLE `komentar` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 
 ALTER TABLE `komisi` ADD FOREIGN KEY (`id_bayar_k`) REFERENCES `bayar_komisi` (`id_bayar_K`);
 ```
+
+Kemdudian mengenai erd yang sudah kami buat ada 2 versi yang sebenarnya sama saja yaitu yang dibuat melalui platfrom [dbdiagram](https://dbdiagram.io) dan juga melalui dbeaver. Berikut untuk tampilan pada platfrom dbdiagram bisa diakses dengan klik [di sini](https://dbdiagram.io/d/65e5bfb0cd45b569fb7760a8) atau melalui lampiran gambar berikut.
+
+![Gambar ERD DbDiagram](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddbdiagram.png)
+
+lalu sedangkan ERD pada dbeaver dapat dilihat pada lampiran berikut.
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
 
 # Jawaban Soal No 2
 Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka user harus membuat akun terlebih dahulu yang mana user direpresantikan pada table user, singkatnya ketika user sudah membuat akun maka dia harus login, setelah login dia mendapatkan pangkat user pada website toko online tersebut. pangkat user mendaptakan hak akses membeli barang yang mana barang terepresentasikan pada table barang kemudian user bisa melakukan check out yang direpresantasikan oleh table transaksi.
