@@ -286,7 +286,7 @@ CREATE TABLE `transaksi` (
 
 | Column Name | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
 |------|------------|---------|----------|----------|-----|----------|--------|
-|id_user|1|int(10)|[v]|[v]|PRI||auto_increment|
+|id_user|1|int(10)|[v]|[v]|PRI|-|auto_increment|
 |no_rek|2|varchar|[]|[]|-|NULL|
 |bank|3|char|[]|[]|-|NULL|
 |expired|4|date|[]|[]|-|NULL|
