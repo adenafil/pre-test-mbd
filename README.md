@@ -157,15 +157,15 @@ Pada jawaban no 3 kami akan memulai menjawab atau menjelaskan mengenai table-tab
 
 ## Table user
 
-### column
+### Column
 
-| User | Keterangan |
-|------|------------|
-|id_user|primary key|
-|no_telp|-|
-|password|-|
-|nama|-|
-|alamat|-|
-|id_kota|foreign key dari primary key di table kota|
-|id_refferal|-|
-|pangkatU|-|
+| Column Name | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
+|------|------------|---------|----------|----------|-----|----------|--------|
+|id_user|1|int(7)|[v]|[v]|PRI| |auto_increment|
+|no_telp|2|varchar(12)|[]|[]| |NULL| |
+|password|3|varchar(32)|[]|[]| |NULL| |
+|nama|4|varchar(40)|[]|[]| |NULL| |
+|alamat|5|varchar(500)|[]|[]| |NULL| |
+|id_kota|6|char(8)|[]|[]| |NULL| |
+|id_refferal|7|int(8)|[]|[]| |NULL| |
+|pangkatU|8|enum('user','affiliasi','non_aktif')|[]|[]| |NULL| |
