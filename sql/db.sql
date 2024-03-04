@@ -65,13 +65,8 @@ CREATE TABLE `bayar_komisi` (
 CREATE TABLE `refferal` (
   `id_user` int(7) PRIMARY KEY AUTO_INCREMENT,
   `no_rek` varchar(20),
-  `bank` char(15)
-);
-
-CREATE TABLE `req_pass` (
-  `id_req_pass` int(7) PRIMARY KEY AUTO_INCREMENT,
-  `id_user` int(7),
-  `password` varchar(32)
+  `bank` char(15),
+  `expired` date
 );
 
 CREATE TABLE `komisi` (
@@ -103,8 +98,6 @@ ALTER TABLE `refferal` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 
 ALTER TABLE `barang` ADD FOREIGN KEY (`id_kategori`) REFERENCES `kategory` (`id_kategory`);
 
-ALTER TABLE `user` ADD FOREIGN KEY (`id_user`) REFERENCES `req_pass` (`id_user`);
-
 ALTER TABLE `transaksi` ADD FOREIGN KEY (`id_transaksi`) REFERENCES `komisi` (`id_transaksi`);
 
 ALTER TABLE `komentar` ADD FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
@@ -112,3 +105,5 @@ ALTER TABLE `komentar` ADD FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_ba
 ALTER TABLE `komentar` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 ALTER TABLE `komisi` ADD FOREIGN KEY (`id_bayar_k`) REFERENCES `bayar_komisi` (`id_bayar_K`);
+
+ALTER TABLE `komentar` ADD FOREIGN KEY (`komentar`) REFERENCES `komentar` (`id_komentar`);
