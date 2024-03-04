@@ -177,7 +177,3 @@ ref: komisi.id_transaksi < transaksi.id_transaksi
 ref: komentar.id_barang > barang.id_barang
 ref: komentar.id_user > user.id_user
 ref: komisi.id_bayar_k > bayar_komisi.id_bayar_K
-
-
-
-Ref: "komentar"."id_komentar" < "komentar"."komentar"

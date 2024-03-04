@@ -1,3 +1,5 @@
+use predblagi;
+
 CREATE TABLE `user` (
   `id_user` int(7) PRIMARY KEY AUTO_INCREMENT,
   `no_telp` varchar(12),
@@ -88,7 +90,9 @@ CREATE TABLE `packing` (
   `tanggal_sampai` date
 );
 
-ALTER TABLE `packing` ADD FOREIGN KEY (`id_packing`) REFERENCES `transaksi` (`id_packing`);
+-- ALTER TABLE `packing` ADD FOREIGN KEY (`id_packing`) REFERENCES `transaksi` (`id_packing`);
+
+alter table `transaksi` add foreign key (`id_packing`) references `packing` (`id_packing`);
 
 ALTER TABLE `transaksi` ADD FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
 
@@ -98,12 +102,14 @@ ALTER TABLE `refferal` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 
 ALTER TABLE `barang` ADD FOREIGN KEY (`id_kategori`) REFERENCES `kategory` (`id_kategory`);
 
-ALTER TABLE `transaksi` ADD FOREIGN KEY (`id_transaksi`) REFERENCES `komisi` (`id_transaksi`);
+-- ALTER TABLE `transaksi` ADD FOREIGN KEY (`id_transaksi`) REFERENCES `komisi` (`id_transaksi`);
+
+alter table `komisi` add foreign key (`id_transaksi`) references `transaksi` (`id_transaksi`);
+
+ALTER TABLE `packing` ADD FOREIGN KEY (`id_packing`) REFERENCES `transaksi` (`id_packing`);
 
 ALTER TABLE `komentar` ADD FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
 
 ALTER TABLE `komentar` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 ALTER TABLE `komisi` ADD FOREIGN KEY (`id_bayar_k`) REFERENCES `bayar_komisi` (`id_bayar_K`);
-
-ALTER TABLE `komentar` ADD FOREIGN KEY (`komentar`) REFERENCES `komentar` (`id_komentar`);
