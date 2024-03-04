@@ -169,3 +169,37 @@ Pada jawaban no 3 kami akan memulai menjawab atau menjelaskan mengenai table-tab
 |id_kota|6|char(8)|[]|[]| |NULL| |
 |id_refferal|7|int(8)|[]|[]| |NULL| |
 |pangkatU|8|enum('user','affiliasi','non_aktif')|[]|[]| |NULL| |
+
+### Constraints
+| Name | Column | Owner | Type | Check Expression |
+|------|--------|-------|------|------------------|
+|PRIMARY| - |user|PRIMARY KEY| |
+
+### References
+| Name | Column | Owner | Ref Table | Type | Ref Object |
+|------|--------|-------|-----------|------|-------|
+|Komentar_ibfk_2|-|komentar|user|FOREIGN KEY|PRIMARY|
+|refferal_ibfk_1|-|refferal|user|FOREIGN KEY|PRIMARY|
+|transaksi_ibfk_3|-|transaksi|user|FOREIGN KEY|PRIMARY|
+
+### Indexes
+| Index Name | Column | Table | Index Type | Ascending | Nullable |
+|------------|--------|-------|------------|---------|---------|
+|PRIMARY KEY|id_user|user|BTree|-|-|
+
+### DDL
+```
+-- predblagi.`user` definition
+
+CREATE TABLE `user` (
+  `id_user` int(7) NOT NULL AUTO_INCREMENT,
+  `no_telp` varchar(12) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `nama` varchar(40) DEFAULT NULL,
+  `alamat` varchar(500) DEFAULT NULL,
+  `id_kota` char(8) DEFAULT NULL,
+  `id_refferal` int(8) DEFAULT NULL,
+  `pangkatU` enum('user','affiliasi','non_aktif') DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
