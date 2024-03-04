@@ -1,0 +1,183 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table user {
+  id_user int(7) [primary key, increment]
+  no_telp varchar(12)
+  password varchar(32)
+  nama varchar(40)
+  alamat varchar(500)
+  id_kota char(8)
+  id_refferal int(8)
+  pangkatU pangkat_user
+}
+
+enum pangkat_user{
+  user
+  affiliasi
+  non_aktif
+}
+
+enum asuransi_barang{
+  n
+  y
+}
+
+enum publish_barang{
+  n
+  y
+}
+
+Table barang {
+  id_barang int(7) [pk, increment]
+  nama_barang varchar
+  link varchar
+  harga int(10)
+  stok int(5)
+  komisi int(10)
+  id_kategori int(3)
+  deskripsi text
+  asuransiB asuransi_barang
+  publishB publish_barang
+}
+
+enum bankT{
+  bni
+  bca
+}
+
+enum statusT{
+  pesan
+  konfirmasi
+  lunas
+  terkirim
+}
+
+table transaksi{
+  id_transaksi int(10) [pk, increment]
+  tanggal datetime
+  id_user int(7)
+  id_barang int(7)
+  harga int(10)
+  jumlah int(5)
+  // id_ongkir int(5)
+  asuransi int(7)
+  total_harga int(10)
+  tanggal_bayar date
+  bank_transaksi bankT
+  lama_pengiriman char(6)
+  status_transaksi statusT
+  tanggal_kirim date
+  packing int(7)
+  id_packing int(7)
+}
+
+// table ongkir{
+//   id_ongkir char(8) [primary key, increment]
+//   harga_ongkir int(7)
+//   waktu_tiba char(6)
+// }
+
+table kategory{
+  id_kategory int(6) [pk, increment]
+  nama varchar
+}
+
+enum statusK{
+  m
+  p
+}
+
+table komentar{
+  id_komentar int(10) [pk, increment]
+  id_barang int(7)
+  id_user int(7)
+  tanggal date
+  komentar text
+  status_komentar statusK
+}
+
+enum statusBK{
+  diajukan
+  ditolak
+  dibayar
+}
+
+table bayar_komisi{
+  id_bayar_K int(10) [pk, increment]
+  tgl_pengajuan date
+  jumlah int(10)
+  status_bayarK statusBK
+  tgl_dibayar date
+}
+
+table refferal{
+  id_user int(7) [pk, increment]
+  no_rek varchar(20)
+  bank char(15)
+  expired date
+}
+
+// table req_pass{
+//   id_req_pass int(7) [pk, increment]
+//   id_user int(7)
+//   password varchar(32)
+// }
+
+enum jenisK{
+  beli
+  daftar
+}
+
+enum statusKom{
+  valid
+  diajukan
+  dibayar
+  ditolak
+}
+
+table komisi{
+  id_komisi int(10) [primary key, increment]
+  id_transaksi int(10)
+  jenis_komisi jenisK
+  id_refferal int(7)
+  jumlah int(10)
+  id_bayar_k int(7)
+  status_komisi statusKom
+}
+
+// table kota{
+//   id_wilayah char(8) [pk, increment]
+//   nama char(100)
+// }
+
+enum ekspedisi{
+  jnt
+  jna
+  ninja
+  sicepat
+}
+
+table packing{
+  id_packing int(10) [pk]
+  berat int(2)
+  harga int(7)
+  nomor_resi varchar(20)
+  packing_ekspedisi ekspedisi
+  tanggal_sampai date
+}
+
+// ref: transaksi.id_ongkir > ongkir.id_ongkir
+ref: packing.id_packing > transaksi.id_packing
+ref: transaksi.id_barang > barang.id_barang
+ref: transaksi.id_user > user.id_user
+ref: refferal.id_user > user.id_user
+ref: kategory.id_kategory < barang.id_kategori
+ref: komisi.id_transaksi < transaksi.id_transaksi
+ref: komentar.id_barang > barang.id_barang
+ref: komentar.id_user > user.id_user
+ref: komisi.id_bayar_k > bayar_komisi.id_bayar_K
+
+
+
+Ref: "komentar"."id_komentar" < "komentar"."komentar"
