@@ -19,7 +19,7 @@ Berikut ini adalah anggota kelompok kami :
 - Dinunaya Syuja 'Aryoko (3012210012)
 
 # Jawaban Soal NO 1
-kelompok kami mendapatkan studi kasus dengan judul "Toko Online perangkat IT dan aksesoris".
+kelompok kami mendapatkan studi kasus dengan judul <i><b>"Toko Online perangkat IT dan aksesoris"</b></i>.
 
 # Jawaban Soal No 2
 Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka user harus membuat akun terlebih dahulu yang mana user direpresantikan pada table user, singkatnya ketika user sudah membuat akun maka dia harus login, setelah login dia mendapatkan pangkat user pada website toko online tersebut. pangkat user mendaptakan hak akses membeli barang yang mana barang terepresentasikan pada table barang kemudian user bisa melakukan check out yang direpresantasikan oleh table transaksi.
