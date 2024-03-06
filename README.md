@@ -420,3 +420,53 @@ CREATE TABLE `komisi` (
   CONSTRAINT `komisi_ibfk_2` FOREIGN KEY (`id_bayar_k`) REFERENCES `bayar_komisi` (`id_bayar_K`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
+## Table Komentar
+
+### Column
+
+| Column Name     | # | Data Type    | Not Null | Auto Increment | Key | Default | extra |
+|-----------------|---|--------------|----------|----------|-----|----------|--------|
+| id_komentar     | 1 | int(10)      |[v]|[v]|PRI|auto_increment| |
+| id_barang       | 2 | int          |[]|[]|-|NULL|
+| id_user         | 3 | int          |[]|[]|-|NULL|
+| tanggal         | 4 | date         |[]|[]|-|NULL|
+| komentar        | 5 | text         |[]|[]|-|NULL|
+| status_komentar | 6 | enum('m','p') |[]|[]|-|NULL|
+
+### Constraints
+| Name | Column | Owner    | Type | Check Expression |
+|------|--------|----------|------|------------------|
+|PRIMARY| - | komentar |PRIMARY KEY| |
+
+### Foreign Keys
+| Name            | Column | Owner    | Ref Table | Type | Ref Object |
+|-----------------|--------|----------|-----------|------|------------|
+| komentar_ibfk_1 |-| komentar | barang    |FOREIGN KEY| PRIMARY    |
+| komentar_ibfk_2 |-| komentar   | user      |FOREIGN KEY| PRIMARY    |
+
+### Indexes
+| Index Name   | Column      | Table    | Index Type | Ascending | Nullable |
+|--------------|-------------|----------|------------|---------|---------|
+| PRIMARY KEY  | id_komentar | komentar |BTree|-|-|
+| id_barang   | id_barang   | komentar   |BTree|-|-|
+| id_user | id_user     | komentar   |BTree|-|-|
+
+### DDL
+
+```
+-- predblagi.komentar definition
+
+CREATE TABLE `komentar` (
+  `id_komentar` int(10) NOT NULL AUTO_INCREMENT,
+  `id_barang` int(7) DEFAULT NULL,
+  `id_user` int(7) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `komentar` text DEFAULT NULL,
+  `status_komentar` enum('m','p') DEFAULT NULL,
+  PRIMARY KEY (`id_komentar`),
+  KEY `id_barang` (`id_barang`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
+  CONSTRAINT `komentar_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
