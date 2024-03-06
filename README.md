@@ -280,6 +280,7 @@ CREATE TABLE `user` (
 Untuk tampilan ERD pada database kami, bisa dilihat pada gambar berikut :
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
+</br>
 Mengenai penjelasan atau detail mengenai properties pada database, kami akan menaruhya pada section jawaban no 3.
 
 # Jawaban Soal No 2
@@ -728,3 +729,9 @@ JOIN barang b ON k.id_barang = b.id_barang;
 | John Doe | Laptop ASUS | Barang ini sangat bagus! |
 
 
+# Penutup
+
+Demikian kiranya tugas yang telah kami kerjakan. Kami mengucapkan mohon maaf
+sebesar-sebesarnya atas kesalahan pada tugas yang kami kerjakan dan mengucapkan
+terima kasih atas bimbinganya.
+Akhir kata kami ucapkan terima kasih kepada iabu dosen 🙏.
