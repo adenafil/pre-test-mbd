@@ -1,7 +1,7 @@
 **Table of Contents**
 
  - [Soal](#soal)
- - [Anggota Kelompok](#anggota-kelompok-)
+ - [Anggota Kelompok](#anggota-kelompok)
  - [Jawaban Soal NO 1](#jawaban-soal-no-1)
  - [Jawaban Soal NO 2](#jawaban-soal-no-2)
  - [Jawaban Soal NO 3](#jawaban-soal-no-3)
