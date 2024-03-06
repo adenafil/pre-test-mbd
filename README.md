@@ -654,7 +654,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### Tampolan ERD
+### Tampilan ERD
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
 
@@ -667,7 +667,7 @@ dengan melibatkan operasi JOIN di mysql
 
 ### SQL Query
 
-```angular2html
+```
 SELECT t.tanggal, u.nama AS nama_pengguna, b.nama_barang, t.harga, t.jumlah, t.total_harga
 FROM transaksi t
 JOIN user u ON t.id_user = u.id_user
@@ -677,12 +677,16 @@ JOIN barang b ON t.id_barang = b.id_barang;
 
 ### Result
 
+| tanggal               | nama_pengguna | nama_barang | harga | jumlah | total_harga |
+|-----------------------|---------------|-------------|-------|--------|-------------|
+| 2024-03-06 10:00:00.000 |John Doe|Laptop ASUS|7000000|1|7010000|
+
 
 ## Melakukan JOIN yang kedua
 
 ### SQL Query
 
-```angular2html
+```
 SELECT u.nama AS nama_pengguna, b.nama_barang, k.komentar
 FROM komentar k
 JOIN user u ON k.id_user = u.id_user
@@ -691,5 +695,8 @@ JOIN barang b ON k.id_barang = b.id_barang;
 
 ### Result
 
+| nama_pengguna | nama_barang | komentar    | 
+|---|-------------|-------------|
+| John Doe | Laptop ASUS | Barang ini sangat bagus! |
 
 
