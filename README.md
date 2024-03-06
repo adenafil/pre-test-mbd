@@ -199,7 +199,6 @@ CREATE TABLE `user` (
 Untuk tampilan ERD pada database kami, bisa dilihat pada gambar berikut :
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
-
 Mengenai penjelasan atau detail mengenai properties pada database, kami akan menaruhya pada section jawaban no 3.
 
 # Jawaban Soal No 2
@@ -655,16 +654,36 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### ERD
-
-#### Versi DBDiagram
-
-![Gambar ERD DbDiagram](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddbdiagram.png)
-
-#### Versi DBDeaver
+### Tampolan ERD
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
 
 # Jawaban Soal No 4
+
+Kami akan melakukan query dari database yang kami sudah buat
+dengan melibatkan operasi JOIN di mysql
+
+## Melakukan JOIN yang pertama
+
+### SQL Query
+
+```angular2html
+
+```
+
+
+### Result
+
+
+## Melakukan JOIN yang kedua
+
+### SQL Query
+
+```angular2html
+
+```
+
+### Result
+
 
 
