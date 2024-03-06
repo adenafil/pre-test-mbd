@@ -20,134 +20,187 @@ Berikut ini adalah anggota kelompok kami :
 
 # Jawaban Soal NO 1
 kelompok kami mendapatkan studi kasus dengan judul <i><b>"Toko Online perangkat IT dan aksesoris"</b></i>.
-Mengenai file sql yang sudah kami buat bisa diklik [di sini](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/sql/db.sql) , atau sebagai berikut :
+Mengenai database sql yang sudah kami buat bisa diklik [di sini](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/sql/db.sql) , atau kami lampirkan sebagai berikut :
 ```
-use predblagi;
+-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: predblagi
+-- ------------------------------------------------------
+-- Server version	10.4.32-MariaDB
 
-CREATE TABLE `user` (
-  `id_user` int(7) PRIMARY KEY AUTO_INCREMENT,
-  `no_telp` varchar(12),
-  `password` varchar(32),
-  `nama` varchar(40),
-  `alamat` varchar(500),
-  `id_kota` char(8),
-  `id_refferal` int(8),
-  `pangkatU` ENUM ('user', 'affiliasi', 'non_aktif')
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Table structure for table `barang`
+--
+
+DROP TABLE IF EXISTS `barang`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `barang` (
-  `id_barang` int(7) PRIMARY KEY AUTO_INCREMENT,
-  `nama_barang` varchar(255),
-  `link` varchar(255),
-  `harga` int(10),
-  `stok` int(5),
-  `komisi` int(10),
-  `id_kategori` int(3),
-  `deskripsi` text,
-  `asuransiB` ENUM ('n', 'y'),
-  `publishB` ENUM ('n', 'y')
-);
+  `id_barang` int(7) NOT NULL AUTO_INCREMENT,
+  `nama_barang` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `harga` int(10) DEFAULT NULL,
+  `stok` int(5) DEFAULT NULL,
+  `id_kategori` int(3) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `asuransiB` enum('n','y') DEFAULT NULL,
+  `publishB` enum('n','y') DEFAULT NULL,
+  PRIMARY KEY (`id_barang`),
+  KEY `id_kategori` (`id_kategori`),
+  CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategory` (`id_kategory`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-CREATE TABLE `transaksi` (
-  `id_transaksi` int(10) PRIMARY KEY AUTO_INCREMENT,
-  `tanggal` datetime,
-  `id_user` int(7),
-  `id_barang` int(7),
-  `harga` int(10),
-  `jumlah` int(5),
-  `asuransi` int(7),
-  `total_harga` int(10),
-  `tanggal_bayar` date,
-  `bank_transaksi` ENUM ('bni', 'bca'),
-  `lama_pengiriman` char(6),
-  `status_transaksi` ENUM ('pesan', 'konfirmasi', 'lunas', 'terkirim'),
-  `tanggal_kirim` date,
-  `packing` int(7),
-  `id_packing` int(7)
-);
+--
+-- Table structure for table `kategory`
+--
 
+DROP TABLE IF EXISTS `kategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `kategory` (
-  `id_kategory` int(6) PRIMARY KEY AUTO_INCREMENT,
-  `nama` varchar(255)
-);
+  `id_kategory` int(6) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_kategory`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `komentar`
+--
+
+DROP TABLE IF EXISTS `komentar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `komentar` (
-  `id_komentar` int(10) PRIMARY KEY AUTO_INCREMENT,
-  `id_barang` int(7),
-  `id_user` int(7),
-  `tanggal` date,
-  `komentar` text,
-  `status_komentar` ENUM ('m', 'p')
-);
+  `id_komentar` int(10) NOT NULL AUTO_INCREMENT,
+  `id_barang` int(7) DEFAULT NULL,
+  `id_user` int(7) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `komentar` text DEFAULT NULL,
+  `status_komentar` enum('m','p') DEFAULT NULL,
+  PRIMARY KEY (`id_komentar`),
+  KEY `id_barang` (`id_barang`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-CREATE TABLE `bayar_komisi` (
-  `id_bayar_K` int(10) PRIMARY KEY AUTO_INCREMENT,
-  `tgl_pengajuan` date,
-  `jumlah` int(10),
-  `status_bayarK` ENUM ('diajukan', 'ditolak', 'dibayar'),
-  `tgl_dibayar` date
-);
+--
+-- Table structure for table `packing`
+--
 
-CREATE TABLE `refferal` (
-  `id_user` int(7) PRIMARY KEY AUTO_INCREMENT,
-  `no_rek` varchar(20),
-  `bank` char(15),
-  `expired` date
-);
-
-CREATE TABLE `komisi` (
-  `id_komisi` int(10) PRIMARY KEY AUTO_INCREMENT,
-  `id_transaksi` int(10),
-  `jenis_komisi` ENUM ('beli', 'daftar'),
-  `id_refferal` int(7),
-  `jumlah` int(10),
-  `id_bayar_k` int(7),
-  `status_komisi` ENUM ('valid', 'diajukan', 'dibayar', 'ditolak')
-);
-
+DROP TABLE IF EXISTS `packing`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `packing` (
-  `id_packing` int(10) PRIMARY KEY,
-  `berat` int(2),
-  `harga` int(7),
-  `nomor_resi` varchar(20),
-  `packing_ekspedisi` ENUM ('jnt', 'jna', 'ninja', 'sicepat'),
-  `tanggal_sampai` date
-);
+  `id_packing` int(10) NOT NULL AUTO_INCREMENT,
+  `berat` int(2) DEFAULT NULL,
+  `harga` int(7) DEFAULT NULL,
+  `nomor_resi` varchar(20) DEFAULT NULL,
+  `packing_ekspedisi` enum('jnt','jna','ninja','sicepat') DEFAULT NULL,
+  `tanggal_sampai` date DEFAULT NULL,
+  PRIMARY KEY (`id_packing`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ALTER TABLE `packing` ADD FOREIGN KEY (`id_packing`) REFERENCES `transaksi` (`id_packing`);
+--
+-- Table structure for table `refferal`
+--
 
-alter table `transaksi` add foreign key (`id_packing`) references `packing` (`id_packing`);
+DROP TABLE IF EXISTS `refferal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refferal` (
+  `id_refferal` int(7) NOT NULL AUTO_INCREMENT,
+  `no_rek` varchar(20) DEFAULT NULL,
+  `bank` char(15) DEFAULT NULL,
+  `expired` date DEFAULT NULL,
+  PRIMARY KEY (`id_refferal`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-ALTER TABLE `transaksi` ADD FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+--
+-- Table structure for table `transaksi`
+--
 
-ALTER TABLE `transaksi` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+DROP TABLE IF EXISTS `transaksi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(10) NOT NULL AUTO_INCREMENT,
+  `tanggal` datetime DEFAULT NULL,
+  `id_user` int(7) DEFAULT NULL,
+  `id_barang` int(7) DEFAULT NULL,
+  `harga` int(10) DEFAULT NULL,
+  `jumlah` int(5) DEFAULT NULL,
+  `asuransi` int(7) DEFAULT NULL,
+  `total_harga` int(10) DEFAULT NULL,
+  `tanggal_bayar` date DEFAULT NULL,
+  `bank_transaksi` enum('bni','bca') DEFAULT NULL,
+  `lama_pengiriman` char(6) DEFAULT NULL,
+  `status_transaksi` enum('pesan','konfirmasi','lunas','terkirim') DEFAULT NULL,
+  `tanggal_kirim` date DEFAULT NULL,
+  `id_packing` int(10) DEFAULT NULL,
+  `id_refferal` int(7) DEFAULT NULL,
+  PRIMARY KEY (`id_transaksi`),
+  KEY `id_packing` (`id_packing`),
+  KEY `id_barang` (`id_barang`),
+  KEY `id_user` (`id_user`),
+  KEY `id_refferal` (`id_refferal`),
+  CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_packing`) REFERENCES `packing` (`id_packing`),
+  CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
+  CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  CONSTRAINT `transaksi_ibfk_4` FOREIGN KEY (`id_refferal`) REFERENCES `refferal` (`id_refferal`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-ALTER TABLE `refferal` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+--
+-- Table structure for table `user`
+--
 
-ALTER TABLE `barang` ADD FOREIGN KEY (`id_kategori`) REFERENCES `kategory` (`id_kategory`);
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id_user` int(7) NOT NULL AUTO_INCREMENT,
+  `no_telp` varchar(12) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `nama` varchar(40) DEFAULT NULL,
+  `alamat` varchar(500) DEFAULT NULL,
+  `pangkatU` enum('user','affiliasi','non_aktif') DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
--- ALTER TABLE `transaksi` ADD FOREIGN KEY (`id_transaksi`) REFERENCES `komisi` (`id_transaksi`);
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-alter table `komisi` add foreign key (`id_transaksi`) references `transaksi` (`id_transaksi`);
-
-ALTER TABLE `packing` ADD FOREIGN KEY (`id_packing`) REFERENCES `transaksi` (`id_packing`);
-
-ALTER TABLE `komentar` ADD FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
-
-ALTER TABLE `komentar` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
-
-ALTER TABLE `komisi` ADD FOREIGN KEY (`id_bayar_k`) REFERENCES `bayar_komisi` (`id_bayar_K`);
+-- Dump completed on 2024-03-06 15:22:25
 ```
 
-Kemdudian mengenai erd yang sudah kami buat ada 2 versi yang sebenarnya sama saja yaitu yang dibuat melalui platfrom [dbdiagram](https://dbdiagram.io) dan juga melalui dbeaver. Berikut untuk tampilan pada platfrom dbdiagram bisa diakses dengan klik [di sini](https://dbdiagram.io/d/65e5bfb0cd45b569fb7760a8) atau melalui lampiran gambar berikut.
-
-![Gambar ERD DbDiagram](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddbdiagram.png)
-
-lalu sedangkan ERD pada dbeaver dapat dilihat pada lampiran berikut.
+Untuk tampilan ERD pada database kami, bisa dilihat pada gambar berikut :
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
 
-Mengenai penjelasan, kami akan menaruhya pada section jawaban no 3.
+Mengenai penjelasan atau detail mengenai properties pada database, kami akan menaruhya pada section jawaban no 3.
 
 # Jawaban Soal No 2
 Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka user harus membuat akun terlebih dahulu yang mana user direpresantikan pada table user, singkatnya ketika user sudah membuat akun maka dia harus login, setelah login dia mendapatkan pangkat user pada website toko online tersebut. pangkat user mendaptakan hak akses membeli barang yang mana barang terepresentasikan pada table barang kemudian user bisa melakukan check out yang direpresantasikan oleh table transaksi.
@@ -611,4 +664,7 @@ CREATE TABLE `barang` (
 #### Versi DBDeaver
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
+
+# Jawaban Soal No 4
+
 
