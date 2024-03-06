@@ -470,3 +470,36 @@ CREATE TABLE `komentar` (
   CONSTRAINT `komentar_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
+
+## Table Ketagory
+
+| Column Name | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
+|-------------|---|-----------|----------|----------|-----|----------|--------|
+| id_ketagory | 1 | int(10)   |[v]|[v]|PRI|auto_increment| |
+| nama        | 2 | varchar   |[]|[]|-|NULL|
+
+### Constraints
+| Name | Column | Owner    | Type | Check Expression |
+|------|--------|----------|------|------------------|
+|PRIMARY| - | ketagory |PRIMARY KEY| |
+
+### References
+| Name          | Column | Owner  | Ref Table | Type | Ref Object |
+|---------------|--------|--------|-----------|------|-------|
+| barang_ibfk_1 |-| barang | ketagory  |FOREIGN KEY|PRIMARY|
+
+### Indexes
+| Index Name   | Column      | Table    | Index Type | Ascending | Nullable |
+|--------------|-------------|----------|------------|---------|---------|
+| PRIMARY KEY  | id_ketagory | ketagory |BTree|-|-|
+
+### DDL
+```
+-- predblagi.kategory definition
+
+CREATE TABLE `kategory` (
+  `id_kategory` int(6) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_kategory`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
