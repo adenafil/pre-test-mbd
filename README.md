@@ -62,7 +62,7 @@
         ](#indexes-6)
       - [DDL
         ](#ddl-6)
-      - [Tampilan ERD](#tampilan-erd)
+   - [Tampilan ERD](#tampilan-erd)
  - [Penjelasan Relasi Pada Setiap Database](#penjelasan-relasi-pada-setiap-database)
    - [Relasi Pada Table user](#relasi-pada-table-user) 
    - [Relasi Pada Table transaksi](#relasi-pada-table-transaksi) 
@@ -631,7 +631,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### Tampilan ERD
+## Tampilan ERD
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
 
