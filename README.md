@@ -552,6 +552,59 @@ CREATE TABLE `barang` (
 
 ![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/erddebeiver.png)
 
+## Penjelasan Relasi Pada Setiap Database
+
+### Relasi Pada Table user
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/user.png)
+
+Pada table di atas dapat diketahui bahwasanya table user memiliki relasi ke table komentar
+dan juga ke transaksi. Pada table user -> komentar relasinya adalah one to many dan user -> transaksi adalah
+one to many juga.
+
+### Relasi Pada Table transaksi
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/transaksi.png)
+
+Table transaksi memiliki relasi antar 4 database yang diantaranya adalah tabel
+table barang, table packing, table refferal dan table user. 
+Kemudian untuk table transaksi -> barang memiliki relasi many to one, transaksi -> packing
+memiliki relasi many to one, transaksi -> refferal memiliki relasi many to one dan transaksi -> user
+memiliki relasi many to one.
+
+### Relasi Pada Table refferal
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/refferal.png)
+
+Pada table refferal dapat diketahui melalui gambar bahwasanya hanya memiliki relasi ke satu table yaitu transaksi
+dan relasinya adalah one to many.
+
+### Relasi Pada Table packing
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/packing.png)
+
+Table packing memiliki relasi ke table transaksi dengan hubungan one to many.
+
+### Relasi Pada Table komentar
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/komentar.png)
+
+Melalui gambar di atas terindikasi bahwasanya table komentar memiliki relasi
+many to one ke pada table user.
+
+### Relasi Pada Table ketagory
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/ketagory.png)
+
+Table ketagory memiliki relasi one to many terhadap table barang.
+
+### Relasi Pada Table barang
+
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/barang.png)
+
+Terakhir adalah table barang. Relasi table barang adalah many to one pada kepada
+table ketagory.
+
 # Jawaban Soal No 4
 
 Kami akan melakukan query dari database yang kami sudah buat
