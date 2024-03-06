@@ -29,7 +29,7 @@
         ](#indexes-2)
       - [DDL
         ](#ddl-2)
-     - [Table packing](#table-packing)
+   - [Table packing](#table-packing)
       - [Column](#column-3)
       - [Constraints](#constraints-3)
       - [Refereces](#references-1)
@@ -38,7 +38,7 @@
         ](#indexes-3)
       - [DDL
         ](#ddl-3)
-     - [Table komentar](#table-komentar)
+   - [Table komentar](#table-komentar)
       - [Column](#column-4)
       - [Constraints](#constraints-4)
       - [Foreign Keys](#foreign-keys-3)
@@ -46,7 +46,7 @@
         ](#indexes-4)
       - [DDL
         ](#ddl-4)
-     - [Table ketagory](#table-ketagory)
+   - [Table ketagory](#table-ketagory)
       - [Column](#column-5)
       - [Constraints](#constraints-5)
       - [References](#references-2)
@@ -54,7 +54,7 @@
         ](#indexes-5)
       - [DDL
         ](#ddl-5)
-     - [Table barang](#table-barang)
+   - [Table barang](#table-barang)
       - [Column](#column-6)
       - [Constraints](#constraints-6)
       - [References](#references-3)
@@ -71,7 +71,14 @@
    - [Relasi Pada Table komentar](#relasi-pada-table-komentar) 
    - [Relasi Pada Table ketagory](#relasi-pada-table-ketagory) 
    - [Relasi Pada Table barang](#relasi-pada-table-barang)
--
+- [Jawaban Soal No 4](#jawaban-soal-no-4)
+    - [Melakukan Join Yang Pertama](#melakukan-join-yang-pertama)
+        - [SQL Query](#sql-query)
+        - [Result](#result)
+    - [Melakukan Join Yang Kedua](#melakukan-join-yang-kedua)
+        - [SQL Query](#sql-query-1)
+        - [Result](#result-1)
+
 # Soal
 1. Dalam kelompok beranggotakan 2 orang, buatlah sebuah desain database
 sederhana (bebas) berupa Relational Data Model (Entity Relationship
