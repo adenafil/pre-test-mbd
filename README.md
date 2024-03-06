@@ -734,4 +734,4 @@ JOIN barang b ON k.id_barang = b.id_barang;
 Demikian kiranya tugas yang telah kami kerjakan. Kami mengucapkan mohon maaf
 sebesar-sebesarnya atas kesalahan pada tugas yang kami kerjakan dan mengucapkan
 terima kasih atas bimbinganya.
-Akhir kata kami ucapkan terima kasih kepada iabu dosen 🙏.
+Akhir kata kami ucapkan terima kasih kepada ibu dosen 🙏.
