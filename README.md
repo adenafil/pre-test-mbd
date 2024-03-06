@@ -20,7 +20,48 @@
       - [Indexes
         ](#indexes-1)
       - [DDL
-        ](#ddl-1)
+        ](#ddl-1)    
+    - [Table refferal](#table-refferal)
+      - [Column](#column-2)
+      - [Constraints](#constraints-2)
+      - [Foreign Keys](#foreign-keys-1)
+      - [Indexes
+        ](#indexes-2)
+      - [DDL
+        ](#ddl-2)
+     - [Table packing](#table-packing)
+      - [Column](#column-3)
+      - [Constraints](#constraints-3)
+      - [Refereces](#references-1)
+      - [Foreign Keys](#foreign-keys-2)
+      - [Indexes
+        ](#indexes-3)
+      - [DDL
+        ](#ddl-3)
+     - [Table komentar](#table-komentar)
+      - [Column](#column-4)
+      - [Constraints](#constraints-4)
+      - [Foreign Keys](#foreign-keys-3)
+      - [Indexes
+        ](#indexes-4)
+      - [DDL
+        ](#ddl-4)
+     - [Table ketagory](#table-ketagory)
+      - [Column](#column-5)
+      - [Constraints](#constraints-5)
+      - [References](#references-2)
+      - [Indexes
+        ](#indexes-5)
+      - [DDL
+        ](#ddl-5)
+     - [Table barang](#table-barang)
+      - [Column](#column-6)
+      - [Constraints](#constraints-6)
+      - [References](#references-3)
+      - [Indexes
+        ](#indexes-6)
+      - [DDL
+        ](#ddl-6)
     
 # Soal
 1. Dalam kelompok beranggotakan 2 orang, buatlah sebuah desain database
@@ -618,7 +659,7 @@ many to one ke pada table user.
 
 ### Relasi Pada Table ketagory
 
-![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/ketagory.png)
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/kategory.png)
 
 Table ketagory memiliki relasi one to many terhadap table barang.
 
