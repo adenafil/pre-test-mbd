@@ -668,7 +668,10 @@ dengan melibatkan operasi JOIN di mysql
 ### SQL Query
 
 ```angular2html
-
+SELECT t.tanggal, u.nama AS nama_pengguna, b.nama_barang, t.harga, t.jumlah, t.total_harga
+FROM transaksi t
+JOIN user u ON t.id_user = u.id_user
+JOIN barang b ON t.id_barang = b.id_barang;
 ```
 
 
@@ -680,7 +683,10 @@ dengan melibatkan operasi JOIN di mysql
 ### SQL Query
 
 ```angular2html
-
+SELECT u.nama AS nama_pengguna, b.nama_barang, k.komentar
+FROM komentar k
+JOIN user u ON k.id_user = u.id_user
+JOIN barang b ON k.id_barang = b.id_barang;
 ```
 
 ### Result
