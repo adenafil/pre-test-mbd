@@ -343,4 +343,29 @@ CREATE TABLE `refferal` (
 |----------------|--------|--|-----------|------|--------|
 | packing_ibfk_1 |-|packing|transaksi|FOREIGN KEY| |
 
+### References
+| Name             | Column | Owner     | Ref Table | Type | Ref Object |
+|------------------|--------|-----------|-----------|------|-------|
+| transaksi_ibfk_1 |-| transaksi | packing   |FOREIGN KEY|PRIMARY|
+
+### Indexes
+| Index Name | Column     | Table   | Index Type | Ascending | Nullable |
+|------------|------------|---------|------------|---------|---------|
+|PRIMARY KEY| id_packing | packing |BTree|-|-|
+
+### DDL
+```
+-- predblagi.packing definition
+
+CREATE TABLE `packing` (
+  `id_packing` int(10) NOT NULL,
+  `berat` int(2) DEFAULT NULL,
+  `harga` int(7) DEFAULT NULL,
+  `nomor_resi` varchar(20) DEFAULT NULL,
+  `packing_ekspedisi` enum('jnt','jna','ninja','sicepat') DEFAULT NULL,
+  `tanggal_sampai` date DEFAULT NULL,
+  PRIMARY KEY (`id_packing`),
+  CONSTRAINT `packing_ibfk_1` FOREIGN KEY (`id_packing`) REFERENCES `transaksi` (`id_packing`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
 
