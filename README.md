@@ -78,7 +78,8 @@
     - [Melakukan Join Yang Kedua](#melakukan-join-yang-kedua)
         - [SQL Query](#sql-query-1)
         - [Result](#result-1)
-
+ - [Penutup](#penutup)
+   
 # Soal
 1. Dalam kelompok beranggotakan 2 orang, buatlah sebuah desain database
 sederhana (bebas) berupa Relational Data Model (Entity Relationship
