@@ -62,7 +62,16 @@
         ](#indexes-6)
       - [DDL
         ](#ddl-6)
-    
+      - [Tampilan ERD](#tampilan-erd)
+ - [Penjelasan Relasi Pada Setiap Database](#penjelasan-relasi-pada-setiap-database)
+   - [Relasi Pada Table user](#relasi-pada-table-user) 
+   - [Relasi Pada Table transaksi](#relasi-pada-table-transaksi) 
+   - [Relasi Pada Table refferal](#relasi-pada-table-refferal) 
+   - [Relasi Pada Table packing](#relasi-pada-table-packing) 
+   - [Relasi Pada Table komentar](#relasi-pada-table-komentar) 
+   - [Relasi Pada Table ketagory](#relasi-pada-table-ketagory) 
+   - [Relasi Pada Table barang](#relasi-pada-table-barang)
+-
 # Soal
 1. Dalam kelompok beranggotakan 2 orang, buatlah sebuah desain database
 sederhana (bebas) berupa Relational Data Model (Entity Relationship
