@@ -325,13 +325,13 @@ CREATE TABLE `refferal` (
 ### Column
 
 | Column Name       | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
-|-------------------|------------|-----------|----------|----------|-----|----------|--------|
-| id_packing        |1| int(10)   |[v]|[v]|PRI|auto_increment| |
-| berat             |2| int       |[]|[]|-|NULL|
-| harga             |3| int       |[]|[]|-|NULL|
-| nomor_resi        |4| varchar   |[]|[]|-|NULL|
-| packing_ekspedisi |4| enum('jnt','jna','ninja','sicepat')          |[]|[]|-|NULL|
-| tanggal_sampai    |4| date      |[]|[]|-|NULL|
+|-------------------|---|-----------|----------|----------|-----|----------|--------|
+| id_packing        | 1 | int(10)   |[v]|[v]|PRI|auto_increment| |
+| berat             | 2 | int       |[]|[]|-|NULL|
+| harga             | 3 | int       |[]|[]|-|NULL|
+| nomor_resi        | 4 | varchar   |[]|[]|-|NULL|
+| packing_ekspedisi | 5 | enum('jnt','jna','ninja','sicepat')          |[]|[]|-|NULL|
+| tanggal_sampai    | 6 | date      |[]|[]|-|NULL|
 
 ### Constraints
 | Name | Column | Owner     | Type | Check Expression |
@@ -369,3 +369,54 @@ CREATE TABLE `packing` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
+## Table Komisi
+
+### Column
+
+| Column Name   | # | Data Type                                    | Not Null | Auto Increment | Key | Default | extra |
+|---------------|---|----------------------------------------------|----------|----------|-----|----------|--------|
+| id_komisi     | 1 | int(10)                                      |[v]|[v]|PRI|auto_increment| |
+| id_transaksi  | 2 | int                                          |[]|[]|-|NULL|
+| jenis_komisi  | 3 | enum('beli','daftar')                        |[]|[]|-|NULL|
+| id_refferal   | 4 | int                                          |[]|[]|-|NULL|
+| jumlah        | 5 | int                                          |[]|[]|-|NULL|
+| id_bayar_k    | 6 | int                                          |[]|[]|-|NULL|
+| status_komisi | 7 | enum('valid','diajukan','dibayar','ditolak') |[]|[]|-|NULL|
+
+### Constraints
+| Name | Column | Owner  | Type | Check Expression |
+|------|--------|--------|------|------------------|
+|PRIMARY| - | komisi |PRIMARY KEY| |
+
+### Foreign Keys
+| Name          | Column | Owner  | Ref Table    | Type | Ref Object |
+|---------------|--------|--------|--------------|------|------------|
+| komisi_ibfk_2 |-| komisi | bayar_komisi |FOREIGN KEY| PRIMARY    |
+| komisi_ibfk_1 |-| komisi | transaksi    |FOREIGN KEY| PRIMARY    |
+
+### Indexes
+| Index Name   | Column    | Table  | Index Type | Ascending | Nullable |
+|--------------|-----------|--------|------------|---------|---------|
+| PRIMARY KEY  | id_komisi | komisi |BTree|-|-|
+| id_bayar_k   | id_bayar_k | komisi |BTree|-|-|
+| id_transaksi | id_transaksi | komisi |BTree|-|-|
+
+### DDL
+```
+-- predblagi.komisi definition
+
+CREATE TABLE `komisi` (
+  `id_komisi` int(10) NOT NULL AUTO_INCREMENT,
+  `id_transaksi` int(10) DEFAULT NULL,
+  `jenis_komisi` enum('beli','daftar') DEFAULT NULL,
+  `id_refferal` int(7) DEFAULT NULL,
+  `jumlah` int(10) DEFAULT NULL,
+  `id_bayar_k` int(7) DEFAULT NULL,
+  `status_komisi` enum('valid','diajukan','dibayar','ditolak') DEFAULT NULL,
+  PRIMARY KEY (`id_komisi`),
+  KEY `id_transaksi` (`id_transaksi`),
+  KEY `id_bayar_k` (`id_bayar_k`),
+  CONSTRAINT `komisi_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`),
+  CONSTRAINT `komisi_ibfk_2` FOREIGN KEY (`id_bayar_k`) REFERENCES `bayar_komisi` (`id_bayar_K`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
