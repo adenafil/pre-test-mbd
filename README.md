@@ -213,15 +213,13 @@ Table user merupakan represantasi dari seorang user. Berikut ini merupakan prope
 ### Column
 
 | Column Name | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
-|------|------------|---------|----------|----------|-----|----------|--------|
-|id_user|1|int(7)|[v]|[v]|PRI| |auto_increment|
-|no_telp|2|varchar(12)|[]|[]| |NULL| |
-|password|3|varchar(32)|[]|[]| |NULL| |
-|nama|4|varchar(40)|[]|[]| |NULL| |
-|alamat|5|varchar(500)|[]|[]| |NULL| |
-|id_kota|6|char(8)|[]|[]| |NULL| |
-|id_refferal|7|int(8)|[]|[]| |NULL| |
-|pangkatU|8|enum('user','affiliasi','non_aktif')|[]|[]| |NULL| |
+|------|---|---------|----------|----------|-----|----------|--------|
+|id_user| 1 |int(7)|[v]|[v]|PRI| |auto_increment|
+|no_telp| 2 |varchar(12)|[]|[]| |NULL| |
+|password| 3 |varchar(32)|[]|[]| |NULL| |
+|nama| 4 |varchar(40)|[]|[]| |NULL| |
+|alamat| 5 |varchar(500)|[]|[]| |NULL| |
+|pangkatU| 6 |enum('user','affiliasi','non_aktif')|[]|[]| |NULL| |
 
 ### Constraints
 | Name | Column | Owner | Type | Check Expression |
@@ -229,11 +227,10 @@ Table user merupakan represantasi dari seorang user. Berikut ini merupakan prope
 |PRIMARY| - |user|PRIMARY KEY| |
 
 ### References
-| Name | Column | Owner | Ref Table | Type | Ref Object |
-|------|--------|-------|-----------|------|-------|
-|Komentar_ibfk_2|-|komentar|user|FOREIGN KEY|PRIMARY|
-|refferal_ibfk_1|-|refferal|user|FOREIGN KEY|PRIMARY|
-|transaksi_ibfk_3|-|transaksi|user|FOREIGN KEY|PRIMARY|
+| Name             | Column | Owner | Ref Table | Type | Ref Object |
+|------------------|--------|-------|-----------|------|-------|
+| Komentar_ibfk_1  |-|komentar|user|FOREIGN KEY|PRIMARY|
+| transaksi_ibfk_3 |-|transaksi|user|FOREIGN KEY|PRIMARY|
 
 ### Indexes
 | Index Name | Column | Table | Index Type | Ascending | Nullable |
@@ -250,11 +247,9 @@ CREATE TABLE `user` (
   `password` varchar(32) DEFAULT NULL,
   `nama` varchar(40) DEFAULT NULL,
   `alamat` varchar(500) DEFAULT NULL,
-  `id_kota` char(8) DEFAULT NULL,
-  `id_refferal` int(8) DEFAULT NULL,
   `pangkatU` enum('user','affiliasi','non_aktif') DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
 ## Table Transaksi
@@ -262,22 +257,23 @@ CREATE TABLE `user` (
 
 ### Column
 
-| Column Name | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
-|------|------------|---------|----------|----------|-----|----------|--------|
-|id_transaksi|1|int(10)|[v]|[v]|PRI|
-|tanggal|2|datetime|[]|[]|-|
-|id_user|3|int|[]|[]|MUL|
-|id_barang|4|int|[]|[]|MUL|
-|harga|5|int|[]|[]|-|
-|jumlah|6|int|[]|[]|-|
-|asuransi|7|int|[]|[]|-|
-|total_harga|8|int|[]|[]|-|
-|tanggal_bayar|9|date|[]|[]|-|
-|bank_transaksi|10|enum('bni','bca')|[]|[]|-|
-|lama_pengiriman|11|char(6)|[]|[]|-|
-|status_transaksi|12|enum('pesan','konfirmasi','lunas','terkirim')|[]|[]|-|
-|tanggal_pengiriman|13|date|[]|[]|-|
-|id_packing|14|int|[]|[]|MUL|
+| Column Name        | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
+|--------------------|------------|---------|----------|----------|-----|----------|--------|
+| id_transaksi       |1|int(10)|[v]|[v]|PRI|
+| tanggal            |2|datetime|[]|[]|-|
+| id_user            |3|int|[]|[]|MUL|
+| id_barang          |4|int|[]|[]|MUL|
+| harga              |5|int|[]|[]|-|
+| jumlah             |6|int|[]|[]|-|
+| asuransi           |7|int|[]|[]|-|
+| total_harga        |8|int|[]|[]|-|
+| tanggal_bayar      |9|date|[]|[]|-|
+| bank_transaksi     |10|enum('bni','bca')|[]|[]|-|
+| lama_pengiriman    |11|char(6)|[]|[]|-|
+| status_transaksi   |12|enum('pesan','konfirmasi','lunas','terkirim')|[]|[]|-|
+| tanggal_pengiriman |13|date|[]|[]|-|
+| id_packing         |14|int|[]|[]|MUL|
+| id_refferal        |14|int|[]|[]|MUL|
 
 ### Constraints
 | Name | Column | Owner | Type | Check Expression |
@@ -318,16 +314,18 @@ CREATE TABLE `transaksi` (
   `lama_pengiriman` char(6) DEFAULT NULL,
   `status_transaksi` enum('pesan','konfirmasi','lunas','terkirim') DEFAULT NULL,
   `tanggal_kirim` date DEFAULT NULL,
-  `packing` int(7) DEFAULT NULL,
-  `id_packing` int(7) DEFAULT NULL,
+  `id_packing` int(10) DEFAULT NULL,
+  `id_refferal` int(7) DEFAULT NULL,
   PRIMARY KEY (`id_transaksi`),
   KEY `id_packing` (`id_packing`),
   KEY `id_barang` (`id_barang`),
   KEY `id_user` (`id_user`),
+  KEY `id_refferal` (`id_refferal`),
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_packing`) REFERENCES `packing` (`id_packing`),
   CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
-  CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  CONSTRAINT `transaksi_ibfk_4` FOREIGN KEY (`id_refferal`) REFERENCES `refferal` (`id_refferal`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
 
@@ -390,11 +388,6 @@ CREATE TABLE `refferal` (
 |------|--------|-----------|------|------------------|
 |PRIMARY| - | packinig  |PRIMARY KEY| |
 
-### Foreign Keys
-| Name           | Column | Owner | Ref Table | Type | Ref Object |
-|----------------|--------|--|-----------|------|--------|
-| packing_ibfk_1 |-|packing|transaksi|FOREIGN KEY| |
-
 ### References
 | Name             | Column | Owner     | Ref Table | Type | Ref Object |
 |------------------|--------|-----------|-----------|------|-------|
@@ -410,68 +403,16 @@ CREATE TABLE `refferal` (
 -- predblagi.packing definition
 
 CREATE TABLE `packing` (
-  `id_packing` int(10) NOT NULL,
+  `id_packing` int(10) NOT NULL AUTO_INCREMENT,
   `berat` int(2) DEFAULT NULL,
   `harga` int(7) DEFAULT NULL,
   `nomor_resi` varchar(20) DEFAULT NULL,
   `packing_ekspedisi` enum('jnt','jna','ninja','sicepat') DEFAULT NULL,
   `tanggal_sampai` date DEFAULT NULL,
-  PRIMARY KEY (`id_packing`),
-  CONSTRAINT `packing_ibfk_1` FOREIGN KEY (`id_packing`) REFERENCES `transaksi` (`id_packing`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id_packing`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-## Table Komisi
-
-### Column
-
-| Column Name   | # | Data Type                                    | Not Null | Auto Increment | Key | Default | extra |
-|---------------|---|----------------------------------------------|----------|----------|-----|----------|--------|
-| id_komisi     | 1 | int(10)                                      |[v]|[v]|PRI|auto_increment| |
-| id_transaksi  | 2 | int                                          |[]|[]|-|NULL|
-| jenis_komisi  | 3 | enum('beli','daftar')                        |[]|[]|-|NULL|
-| id_refferal   | 4 | int                                          |[]|[]|-|NULL|
-| jumlah        | 5 | int                                          |[]|[]|-|NULL|
-| id_bayar_k    | 6 | int                                          |[]|[]|-|NULL|
-| status_komisi | 7 | enum('valid','diajukan','dibayar','ditolak') |[]|[]|-|NULL|
-
-### Constraints
-| Name | Column | Owner  | Type | Check Expression |
-|------|--------|--------|------|------------------|
-|PRIMARY| - | komisi |PRIMARY KEY| |
-
-### Foreign Keys
-| Name          | Column | Owner  | Ref Table    | Type | Ref Object |
-|---------------|--------|--------|--------------|------|------------|
-| komisi_ibfk_2 |-| komisi | bayar_komisi |FOREIGN KEY| PRIMARY    |
-| komisi_ibfk_1 |-| komisi | transaksi    |FOREIGN KEY| PRIMARY    |
-
-### Indexes
-| Index Name   | Column    | Table  | Index Type | Ascending | Nullable |
-|--------------|-----------|--------|------------|---------|---------|
-| PRIMARY KEY  | id_komisi | komisi |BTree|-|-|
-| id_bayar_k   | id_bayar_k | komisi |BTree|-|-|
-| id_transaksi | id_transaksi | komisi |BTree|-|-|
-
-### DDL
-```
--- predblagi.komisi definition
-
-CREATE TABLE `komisi` (
-  `id_komisi` int(10) NOT NULL AUTO_INCREMENT,
-  `id_transaksi` int(10) DEFAULT NULL,
-  `jenis_komisi` enum('beli','daftar') DEFAULT NULL,
-  `id_refferal` int(7) DEFAULT NULL,
-  `jumlah` int(10) DEFAULT NULL,
-  `id_bayar_k` int(7) DEFAULT NULL,
-  `status_komisi` enum('valid','diajukan','dibayar','ditolak') DEFAULT NULL,
-  PRIMARY KEY (`id_komisi`),
-  KEY `id_transaksi` (`id_transaksi`),
-  KEY `id_bayar_k` (`id_bayar_k`),
-  CONSTRAINT `komisi_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`),
-  CONSTRAINT `komisi_ibfk_2` FOREIGN KEY (`id_bayar_k`) REFERENCES `bayar_komisi` (`id_bayar_K`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
 ## Table Komentar
 
 ### Column
@@ -493,8 +434,7 @@ CREATE TABLE `komisi` (
 ### Foreign Keys
 | Name            | Column | Owner    | Ref Table | Type | Ref Object |
 |-----------------|--------|----------|-----------|------|------------|
-| komentar_ibfk_1 |-| komentar | barang    |FOREIGN KEY| PRIMARY    |
-| komentar_ibfk_2 |-| komentar   | user      |FOREIGN KEY| PRIMARY    |
+| komentar_ibfk_1 |-| komentar   | user      |FOREIGN KEY| PRIMARY    |
 
 ### Indexes
 | Index Name   | Column      | Table    | Index Type | Ascending | Nullable |
@@ -518,9 +458,8 @@ CREATE TABLE `komentar` (
   PRIMARY KEY (`id_komentar`),
   KEY `id_barang` (`id_barang`),
   KEY `id_user` (`id_user`),
-  CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`),
-  CONSTRAINT `komentar_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
 ## Table Ketagory
@@ -556,64 +495,21 @@ CREATE TABLE `kategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-## Table bayar_komisi
-
-### Column
-
-| Column Name   | # | Data Type                            | Not Null | Auto Increment | Key | Default | extra |
-|---------------|---|--------------------------------------|----------|----------|-----|----------|--------|
-| id_bayar_k    | 1 | int(10)                              |[v]|[v]|PRI|auto_increment| |
-| tgl_pengajuan | 2 | date                                 |[]|[]|-|NULL|
-| jumlah        | 3 | int                                  |[]|[]|-|NULL|
-| status_bayarK | 4 | enum('diajukan','ditolak','dibayar') |[]|[]|-|NULL|
-| tgl_dibayar   | 5 | date                                 |[]|[]|-|NULL|
-
-### Constraints
-| Name | Column | Owner        | Type | Check Expression |
-|------|--------|--------------|------|------------------|
-|PRIMARY| - | bayar_komisi |PRIMARY KEY| |
-
-### References
-| Name          | Column | Owner  | Ref Table    | Type | Ref Object |
-|---------------|--------|--------|--------------|------|-------|
-| komisi_ibfk_1 |-| komisi | bayar_komisi |FOREIGN KEY|PRIMARY|
-
-### Indexes
-| Index Name  | Column     | Table        | Index Type | Ascending | Nullable |
-|-------------|------------|--------------|------------|---------|---------|
-| PRIMARY  | id_bayar_k | bayar_komisi |BTree|-|-|
-
-### DDL
-
-```
--- predblagi.bayar_komisi definition
-
-CREATE TABLE `bayar_komisi` (
-  `id_bayar_K` int(10) NOT NULL AUTO_INCREMENT,
-  `tgl_pengajuan` date DEFAULT NULL,
-  `jumlah` int(10) DEFAULT NULL,
-  `status_bayarK` enum('diajukan','ditolak','dibayar') DEFAULT NULL,
-  `tgl_dibayar` date DEFAULT NULL,
-  PRIMARY KEY (`id_bayar_K`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
 ## Table barang
 
 ### Column
 
-| Column Name | #  | Data Type     | Not Null | Auto Increment | Key | Default | extra |
-|-------------|----|---------------|----------|----------|-----|----------|--------|
-| id_barang   | 1  | int(10)       |[v]|[v]| PRI |auto_increment| |
-| nama_barang | 2  | varchar       |[]|[]| -   |NULL|
-| link        | 3  | varchar       |[]|[]| -   |NULL|
-| barga       | 4  | int           |[]|[]| -   |NULL|
-| stok        | 5  | int           |[]|[]| -   |NULL|
-| komisi      | 6  | int           |[]|[]| -   |NULL|
-| id_ketagori | 7  | int           |[]|[]| MUL |NULL|
-| deskripsi   | 8  | text          |[]|[]| -   |NULL|
-| asuransiB   | 9  | enum('n','y') |[]|[]| -   |NULL|
-| publishB    | 10 | enum('n','y') |[]|[]| -   |NULL|
+| Column Name | # | Data Type     | Not Null | Auto Increment | Key | Default | extra |
+|-------------|---|---------------|----------|----------|-----|----------|--------|
+| id_barang   | 1 | int(10)       |[v]|[v]| PRI |auto_increment| |
+| nama_barang | 2 | varchar       |[]|[]| -   |NULL|
+| link        | 3 | varchar       |[]|[]| -   |NULL|
+| harga       | 4 | int           |[]|[]| -   |NULL|
+| stok        | 5 | int           |[]|[]| -   |NULL|
+| id_ketagori | 6 | int           |[]|[]| MUL |NULL|
+| deskripsi   | 7 | text          |[]|[]| -   |NULL|
+| asuransiB   | 8 | enum('n','y') |[]|[]| -   |NULL|
+| publishB    | 9 | enum('n','y') |[]|[]| -   |NULL|
 
 ### Constraints
 | Name | Column | Owner  | Type | Check Expression |
@@ -621,10 +517,9 @@ CREATE TABLE `bayar_komisi` (
 |PRIMARY| - | barang |PRIMARY KEY| |
 
 ### References
-| Name            | Column | Owner     | Ref Table | Type | Ref Object |
-|-----------------|--------|-----------|-----------|------|-------|
-| komentar_ibfk_1 |-| komentar  | barang    |FOREIGN KEY|PRIMARY|
-| transaksi_ibfk_2 |-| transaksi | barang    |FOREIGN KEY|PRIMARY|
+| Name            | Column | Owner  | Ref Table | Type | Ref Object |
+|-----------------|--------|--------|-----------|------|-------|
+| komentar_ibfk_1 |-| barang | ketagory  |FOREIGN KEY|PRIMARY|
 
 ### Indexes
 | Index Name | Column      | Table  | Index Type | Ascending | Nullable |
@@ -643,7 +538,6 @@ CREATE TABLE `barang` (
   `link` varchar(255) DEFAULT NULL,
   `harga` int(10) DEFAULT NULL,
   `stok` int(5) DEFAULT NULL,
-  `komisi` int(10) DEFAULT NULL,
   `id_kategori` int(3) DEFAULT NULL,
   `deskripsi` text DEFAULT NULL,
   `asuransiB` enum('n','y') DEFAULT NULL,
@@ -651,7 +545,7 @@ CREATE TABLE `barang` (
   PRIMARY KEY (`id_barang`),
   KEY `id_kategori` (`id_kategori`),
   CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategory` (`id_kategory`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
 ### Tampilan ERD
