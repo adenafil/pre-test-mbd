@@ -489,9 +489,9 @@ CREATE TABLE `komentar` (
 | barang_ibfk_1 |-| barang | ketagory  |FOREIGN KEY|PRIMARY|
 
 ### Indexes
-| Index Name   | Column      | Table    | Index Type | Ascending | Nullable |
-|--------------|-------------|----------|------------|---------|---------|
-| PRIMARY KEY  | id_ketagory | ketagory |BTree|-|-|
+| Index Name  | Column      | Table    | Index Type | Ascending | Nullable |
+|-------------|-------------|----------|------------|---------|---------|
+| PRIMARY  | id_ketagory | ketagory |BTree|-|-|
 
 ### DDL
 ```
@@ -527,9 +527,9 @@ CREATE TABLE `kategory` (
 | komisi_ibfk_1 |-| komisi | bayar_komisi |FOREIGN KEY|PRIMARY|
 
 ### Indexes
-| Index Name   | Column     | Table        | Index Type | Ascending | Nullable |
-|--------------|------------|--------------|------------|---------|---------|
-| PRIMARY KEY  | id_bayar_k | bayar_komisi |BTree|-|-|
+| Index Name  | Column     | Table        | Index Type | Ascending | Nullable |
+|-------------|------------|--------------|------------|---------|---------|
+| PRIMARY  | id_bayar_k | bayar_komisi |BTree|-|-|
 
 ### DDL
 
@@ -547,3 +547,57 @@ CREATE TABLE `bayar_komisi` (
 ```
 
 ## Table barang
+
+### Column
+
+| Column Name | #  | Data Type     | Not Null | Auto Increment | Key | Default | extra |
+|-------------|----|---------------|----------|----------|-----|----------|--------|
+| id_barang   | 1  | int(10)       |[v]|[v]| PRI |auto_increment| |
+| nama_barang | 2  | varchar       |[]|[]| -   |NULL|
+| link        | 3  | varchar       |[]|[]| -   |NULL|
+| barga       | 4  | int           |[]|[]| -   |NULL|
+| stok        | 5  | int           |[]|[]| -   |NULL|
+| komisi      | 6  | int           |[]|[]| -   |NULL|
+| id_ketagori | 7  | int           |[]|[]| MUL |NULL|
+| deskripsi   | 8  | text          |[]|[]| -   |NULL|
+| asuransiB   | 9  | enum('n','y') |[]|[]| -   |NULL|
+| publishB    | 10 | enum('n','y') |[]|[]| -   |NULL|
+
+### Constraints
+| Name | Column | Owner  | Type | Check Expression |
+|------|--------|--------|------|------------------|
+|PRIMARY| - | barang |PRIMARY KEY| |
+
+### References
+| Name            | Column | Owner     | Ref Table | Type | Ref Object |
+|-----------------|--------|-----------|-----------|------|-------|
+| komentar_ibfk_1 |-| komentar  | barang    |FOREIGN KEY|PRIMARY|
+| transaksi_ibfk_2 |-| transaksi | barang    |FOREIGN KEY|PRIMARY|
+
+### Indexes
+| Index Name | Column      | Table  | Index Type | Ascending | Nullable |
+|----------|-------------|--------|------------|---------|---------|
+| PRIMARY  | id_barang   | barang |BTree|-|-|
+| PRIMARY  | id_ketagori | barang |BTree|-|-|
+
+### DDL
+
+```
+-- predblagi.barang definition
+
+CREATE TABLE `barang` (
+  `id_barang` int(7) NOT NULL AUTO_INCREMENT,
+  `nama_barang` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `harga` int(10) DEFAULT NULL,
+  `stok` int(5) DEFAULT NULL,
+  `komisi` int(10) DEFAULT NULL,
+  `id_kategori` int(3) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `asuransiB` enum('n','y') DEFAULT NULL,
+  `publishB` enum('n','y') DEFAULT NULL,
+  PRIMARY KEY (`id_barang`),
+  KEY `id_kategori` (`id_kategori`),
+  CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategory` (`id_kategory`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
