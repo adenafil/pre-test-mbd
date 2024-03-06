@@ -681,7 +681,7 @@ Table ketagory memiliki relasi one to many terhadap table barang.
 
 ### Relasi Pada Table barang
 
-![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/barang.png)
+![Gambar ERD dbeaver](https://raw.githubusercontent.com/adenafil/pre-test-mbd/main/asset/barangpng.png)
 
 Terakhir adalah table barang. Relasi table barang adalah many to one pada kepada
 table ketagory.
