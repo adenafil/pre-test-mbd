@@ -155,7 +155,7 @@ Ketika user memasuki sebuah website toko online perangkat IT dan aksesoris. Maka
 # Jawaban Soal No 3
 Pada jawaban no 3 kami akan memulai menjawab atau menjelaskan mengenai table-table yang sudah kami buat, kemudian field mana yang termasuk primary key kemudian yang mana jugakah field yang merupakan foreign key. 
 
-## Table user
+## Table User
 Table user merupakan represantasi dari seorang user. Berikut ini merupakan propery-properynya.
 
 ### Column
@@ -319,4 +319,28 @@ CREATE TABLE `refferal` (
   CONSTRAINT `refferal_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
+
+## Table Packing
+
+### Column
+
+| Column Name       | # | Data Type | Not Null | Auto Increment | Key | Default | extra |
+|-------------------|------------|-----------|----------|----------|-----|----------|--------|
+| id_packing        |1| int(10)   |[v]|[v]|PRI|auto_increment| |
+| berat             |2| int       |[]|[]|-|NULL|
+| harga             |3| int       |[]|[]|-|NULL|
+| nomor_resi        |4| varchar   |[]|[]|-|NULL|
+| packing_ekspedisi |4| enum('jnt','jna','ninja','sicepat')          |[]|[]|-|NULL|
+| tanggal_sampai    |4| date      |[]|[]|-|NULL|
+
+### Constraints
+| Name | Column | Owner     | Type | Check Expression |
+|------|--------|-----------|------|------------------|
+|PRIMARY| - | packinig  |PRIMARY KEY| |
+
+### Foreign Keys
+| Name           | Column | Owner | Ref Table | Type | Ref Object |
+|----------------|--------|--|-----------|------|--------|
+| packing_ibfk_1 |-|packing|transaksi|FOREIGN KEY| |
+
 
