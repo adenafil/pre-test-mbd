@@ -503,3 +503,47 @@ CREATE TABLE `kategory` (
   PRIMARY KEY (`id_kategory`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
+
+## Table bayar_komisi
+
+### Column
+
+| Column Name   | # | Data Type                            | Not Null | Auto Increment | Key | Default | extra |
+|---------------|---|--------------------------------------|----------|----------|-----|----------|--------|
+| id_bayar_k    | 1 | int(10)                              |[v]|[v]|PRI|auto_increment| |
+| tgl_pengajuan | 2 | date                                 |[]|[]|-|NULL|
+| jumlah        | 3 | int                                  |[]|[]|-|NULL|
+| status_bayarK | 4 | enum('diajukan','ditolak','dibayar') |[]|[]|-|NULL|
+| tgl_dibayar   | 5 | date                                 |[]|[]|-|NULL|
+
+### Constraints
+| Name | Column | Owner        | Type | Check Expression |
+|------|--------|--------------|------|------------------|
+|PRIMARY| - | bayar_komisi |PRIMARY KEY| |
+
+### References
+| Name          | Column | Owner  | Ref Table    | Type | Ref Object |
+|---------------|--------|--------|--------------|------|-------|
+| komisi_ibfk_1 |-| komisi | bayar_komisi |FOREIGN KEY|PRIMARY|
+
+### Indexes
+| Index Name   | Column     | Table        | Index Type | Ascending | Nullable |
+|--------------|------------|--------------|------------|---------|---------|
+| PRIMARY KEY  | id_bayar_k | bayar_komisi |BTree|-|-|
+
+### DDL
+
+```
+-- predblagi.bayar_komisi definition
+
+CREATE TABLE `bayar_komisi` (
+  `id_bayar_K` int(10) NOT NULL AUTO_INCREMENT,
+  `tgl_pengajuan` date DEFAULT NULL,
+  `jumlah` int(10) DEFAULT NULL,
+  `status_bayarK` enum('diajukan','ditolak','dibayar') DEFAULT NULL,
+  `tgl_dibayar` date DEFAULT NULL,
+  PRIMARY KEY (`id_bayar_K`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+## Table barang
